@@ -13,9 +13,11 @@
 // CRotaApp:
 // See Rota.cpp for the implementation of this class
 //
-
+class CWorkspace;
 class CRotaApp : public CWinAppEx
 {
+private:
+	CWorkspace* mp_workserver;
 public:
 	CRotaApp() noexcept;
 
@@ -24,7 +26,7 @@ public:
 public:
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
-
+	CWorkspace* GetWorkspaceServer();
 // Implementation
 	UINT  m_nAppLook;
 	BOOL  m_bHiColorIcons;

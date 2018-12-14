@@ -20,21 +20,21 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{6D682CCD-A694-449B-A37D-303B40C4FD0A}</ProjectGuid>
-    <Keyword>MFCProj</Keyword>
-    <RootNamespace>Rota</RootNamespace>
+    <ProjectGuid>{759E1D4E-6FB5-4F84-BD03-C68A830E9CD5}</ProjectGuid>
+    <Keyword>MFCDLLProj</Keyword>
+    <RootNamespace>ScenarioLib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -42,14 +42,14 @@
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -92,14 +92,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <ModuleDefinitionFile>.\ScenarioLib.def</ModuleDefinitionFile>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
-      <ValidateAllParameters>true</ValidateAllParameters>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </Midl>
     <ResourceCompile>
@@ -114,14 +114,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;_DEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <ModuleDefinitionFile>.\ScenarioLib.def</ModuleDefinitionFile>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
-      <ValidateAllParameters>true</ValidateAllParameters>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </Midl>
     <ResourceCompile>
@@ -138,16 +138,16 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <ModuleDefinitionFile>.\ScenarioLib.def</ModuleDefinitionFile>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
-      <ValidateAllParameters>true</ValidateAllParameters>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </Midl>
     <ResourceCompile>
@@ -164,16 +164,16 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;NDEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <ModuleDefinitionFile>.\ScenarioLib.def</ModuleDefinitionFile>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
-      <ValidateAllParameters>true</ValidateAllParameters>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </Midl>
     <ResourceCompile>
@@ -183,34 +183,6 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Absence.h" />
-    <ClInclude Include="Category.h" />
-    <ClInclude Include="ChildFrm.h" />
-    <ClInclude Include="ClassView.h" />
-    <ClInclude Include="Contract.h" />
-    <ClInclude Include="FileView.h" />
-    <ClInclude Include="Format_Dur.h" />
-    <ClInclude Include="Format_state.h" />
-    <ClInclude Include="Heading.h" />
-    <ClInclude Include="Log2.h" />
-    <ClInclude Include="MainFrm.h" />
-    <ClInclude Include="OutputWnd.h" />
-    <ClInclude Include="Prdlst.h" />
-    <ClInclude Include="PropertiesWnd.h" />
-    <ClInclude Include="Pwdset.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="Rota.h" />
-    <ClInclude Include="RotaDoc.h" />
-    <ClInclude Include="RotaView.h" />
-    <ClInclude Include="STATE.H" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="subbankd.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="Timelist.h" />
-    <ClInclude Include="ViewTree.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Absence.cpp" />
     <ClCompile Include="Absolute.cpp" />
     <ClCompile Include="addac.cpp" />
     <ClCompile Include="Bank.cpp" />
@@ -218,8 +190,6 @@
     <ClCompile Include="Cal1.cpp" />
     <ClCompile Include="Calstate.cpp" />
     <ClCompile Include="Category.cpp" />
-    <ClCompile Include="ChildFrm.cpp" />
-    <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="CONSET.CPP" />
     <ClCompile Include="Contract.cpp" />
     <ClCompile Include="Credit.cpp" />
@@ -230,25 +200,13 @@
     <ClCompile Include="Estabdlg.cpp" />
     <ClCompile Include="ESTABREC.CPP" />
     <ClCompile Include="Extraprov.cpp" />
-    <ClCompile Include="FileView.cpp" />
-    <ClCompile Include="Format_Dur.cpp" />
-    <ClCompile Include="Format_state.cpp" />
     <ClCompile Include="FRWKSTAT.CPP" />
-    <ClCompile Include="GENSUP.CPP" />
-    <ClCompile Include="HEADING.CPP" />
     <ClCompile Include="Log2.cpp" />
-    <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Navdlg.cpp" />
-    <ClCompile Include="OutputWnd.cpp" />
     <ClCompile Include="Period.cpp" />
     <ClCompile Include="Prdlst.cpp" />
-    <ClCompile Include="PropertiesWnd.cpp" />
-    <ClCompile Include="Pwdset.cpp" />
     <ClCompile Include="Regularp.cpp" />
-    <ClCompile Include="Rota.cpp" />
-    <ClCompile Include="RotaDoc.cpp" />
-    <ClCompile Include="RotaView.cpp" />
-    <ClCompile Include="ROWBUILD.CPP" />
+    <ClCompile Include="ScenarioLib.cpp" />
     <ClCompile Include="SHIFT.CPP" />
     <ClCompile Include="sodialog.cpp" />
     <ClCompile Include="Span.cpp" />
@@ -262,43 +220,32 @@
     </ClCompile>
     <ClCompile Include="subbankd.cpp" />
     <ClCompile Include="SubCondlg.cpp" />
-    <ClCompile Include="TCS.cpp" />
     <ClCompile Include="Timelist.cpp" />
-    <ClCompile Include="Util.cpp" />
-    <ClCompile Include="ViewTree.cpp" />
     <ClCompile Include="WKSTAT.CPP" />
     <ClCompile Include="YRSTAT.CPP" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Rota.rc" />
+    <None Include="res\ScenarioLib.rc2" />
+    <None Include="ScenarioLib.def" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\classview.bmp" />
-    <Image Include="res\classview_hc.bmp" />
-    <Image Include="res\class_view.ico" />
-    <Image Include="res\class_view_hc.ico" />
-    <Image Include="res\explorer.bmp" />
-    <Image Include="res\explorer_hc.bmp" />
-    <Image Include="res\fileview.bmp" />
-    <Image Include="res\fileview_hc.bmp" />
-    <Image Include="res\file_view.ico" />
-    <Image Include="res\file_view_hc.ico" />
-    <Image Include="res\menuimages.bmp" />
-    <Image Include="res\menuimages_hc.bmp" />
-    <Image Include="res\output_wnd.ico" />
-    <Image Include="res\output_wnd_hc.ico" />
-    <Image Include="res\properties.bmp" />
-    <Image Include="res\properties_hc.bmp" />
-    <Image Include="res\properties_wnd.ico" />
-    <Image Include="res\properties_wnd_hc.ico" />
-    <Image Include="res\Rota.ico" />
-    <Image Include="res\RotaDoc.ico" />
-    <Image Include="res\sort.bmp" />
-    <Image Include="res\sort_hc.bmp" />
+    <ClInclude Include="Addac.h" />
+    <ClInclude Include="BITVEC.H" />
+    <ClInclude Include="CONSTANT.H" />
+    <ClInclude Include="Contract.h" />
+    <ClInclude Include="NAVDLG.H" />
+    <ClInclude Include="Regularp.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="ScenarioLib.h" />
+    <ClInclude Include="sodialog.h" />
+    <ClInclude Include="SPLITDLG.H" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="strlong.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Timelist.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".gitignore" />
-    <None Include="res\Rota.rc2" />
+    <ResourceCompile Include="ScenarioLib.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
