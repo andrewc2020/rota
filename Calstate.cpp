@@ -1,10 +1,11 @@
 // calstate.cpp : implementation file
 //
-
+#pragma warning(disable : 4996)
 #include "stdafx.h"
 #include <afxdb.h>
 #include <afxdao.h>
-#include "centool8.h"
+#include "CONSTANT.H"
+//#include "centool8.h"
 #include "span.h"
 #include "absolute.h"
 #include "period.h"
@@ -110,7 +111,7 @@ CTimeSpan divtime(m_div_span);
    int weekno(0), fwkno(0);
 
   pDC->TextOut(0,0,ptr->Getname());  
-  pDC->TextOut(0,-250, start.Get_start_string("%B %d %Y"));	// date on next line
+  pDC->TextOut(0,-250, start.Get_start_string(_T("%B %d %Y")));	// date on next line
   
   if( !ptr->printall(calendar->GetBaseDate(),calendar->GetCurrentPeriod(),pDC,handle))
   {

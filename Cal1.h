@@ -21,6 +21,7 @@ class CCalendar;
 class Calstate;
 class CBitvector;
 class CDaoDatabase;
+class CLog;
 
 
 class CCalendar : public CObject

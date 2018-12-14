@@ -3,30 +3,32 @@
 #include "stdafx.h"
 #include <afxdb.h>
 #include <afxdao.h>
-//#include "centool8.h"
-//#include "absolute.h"
-//#include "span.h"
-//#include "period.h"
-//#include "timelist.h"
-//#include "contract.h"
-//#include "estab.h"
-//#include "state.h"
-//#include "calstate.h"
-//#include "yrstat.h"
-//#include "frwkstat.h"
-//#include "wkstat.h"
-//#include "daystate.h"
+#pragma warning(disable : 4996)
+#pragma warning(disable : 4995)
+#include "CONSTANT.H"
+#include "absolute.h"
+#include "span.h"
+#include "period.h"
+#include "timelist.h"
+#include "contract.h"
+#include "estab.h"
+#include "state.h"
+#include "calstate.h"
+#include "yrstat.h"
+#include "frwkstat.h"
+#include "wkstat.h"
+#include "daystate.h"
 #include "rotaview.h"
-/*#include "log2.h" */ 
+#include "log2.h"  
 
 #include <stdio.h>
 #include "assert.h"
 
 #include "cal1.h"
-//#include "bitvec.h"
+#include "bitvec.h"
 
 #include <math.h>
-
+#include "RotaView.h"
 
 
 
@@ -242,7 +244,7 @@ CString CCalendar::set_totals_heading(CString colhead,CView* handle)
 
 if(!handle){ AfxThrowUserException();}
 
-CRotaview*viewptr = (CRotaview*) handle;
+CRotaView* viewptr = (CRotaView*) handle;
 		UINT currently_showing(0);
 		viewptr->getshowing(currently_showing);
 try
@@ -336,7 +338,7 @@ try
 
 	}//end try
 
-catch(CUserException e)
+catch(CUserException* e)
 	{
 
 
@@ -729,7 +731,7 @@ pCalstate->display(handle,pDC,ptr,datalist);
 void CCalendar::set_special_format(CWnd* handle)
 {
 
-CRotaview* rotaptr=(CRotaview*) handle;
+CRotaView* rotaptr=(CRotaView*) handle;
 rotaptr->getshowing(m_copyshowing);	//  temporarily changes view
 assert(m_copyshowing);
 
@@ -770,7 +772,7 @@ break;
 void CCalendar::restore_special_format(CWnd* handle)
 {
 
-CRotaview* rotaptr=(CRotaview*) handle;
+CRotaView* rotaptr=(CRotaView*) handle;
 
 rotaptr->setshowing(m_copyshowing);
 m_copyshowing=0;
@@ -1448,7 +1450,7 @@ CAbsolutePeriod start(*m_currentperiod,::NONE,::ONE_DAY);
        {
 	verdict = TRUE;
     ptr->prioritise(GetBaseDate(),start,debit_only, bv.firstset(),verdict);			
-	ptr->OnFileUpdateDatabase(ds,"",((CContract*) ptr)->get_contract_holder_ID(),((CContract*) ptr)->get_table_ID(), start);
+	ptr->OnFileUpdateDatabase(ds,_T(""),((CContract*) ptr)->get_contract_holder_ID(),((CContract*) ptr)->get_table_ID(), start);
 	
 	start++;
     ptr->Clearbalance();   

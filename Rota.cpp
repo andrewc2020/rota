@@ -1,7 +1,7 @@
 
 // Rota.cpp : Defines the class behaviors for the application.
 //
-
+#define STANDALONE
 #include "stdafx.h"
 #include "afxwinappex.h"
 #include "afxdialogex.h"
@@ -11,6 +11,8 @@
 #include "ChildFrm.h"
 #include "RotaDoc.h"
 #include "RotaView.h"
+
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -134,6 +136,98 @@ BOOL CRotaApp::InitInstance()
 	pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->UpdateWindow();
 
+	// enable filemanager drag and drop & DDE Execute Open
+
+	m_pMainWnd->DragAcceptFiles();
+	EnableShellOpen();
+	RegisterShellFileTypes();
+
+	/* by default the MRU should provide the first document. If this
+	fails the application will call OnFileNew() which will
+	try the data source.
+
+	We do not want to overwrite the command line member:
+
+	a) in case the user has chosen to do an embedded launch
+
+	b) because the CWinApp member m_lpCmdLine might be used by other
+		code. It is a public member so it should be safe, but..*/
+
+
+
+	CString lastused(AfxGetApp()->GetProfileString(_T("Recent File List"),
+		_T("Rota1"),
+		_T("Not found")));
+
+
+	CString pFileName = lastused.GetBuffer(lastused.GetLength());
+
+
+	/*Check MRU entry in case it has been moved or deleted*/
+
+
+
+
+
+
+
+	CFileStatus status;
+	CFile cfile;
+
+	//char* pFileName = "test.dat";
+	if (cfile.GetStatus(pFileName, status))   // static function
+	{
+#ifdef _DEBUG
+		afxDump << "Full file name = " << status.m_szFullName << "\n";
+#endif
+
+		m_lpCmdLine = status.m_szFullName;
+
+	}
+
+	else
+
+	{
+
+
+		/*AfxMessageBox(
+			_T("File could not be opened\n")
+			, MB_OK, 0
+		);*/
+	}
+
+
+	if (m_lpCmdLine[0] == '\0') // i.e MRU is empty
+	{
+		// TODO: add command line processing here 
+		OnFileNew();// in this application creates a new document
+					// filled from the data source
+
+	}
+
+	else if ((m_lpCmdLine[0] == '-' || m_lpCmdLine[0] == '/') &&
+		(m_lpCmdLine[0] == 'e' || m_lpCmdLine[0] == 'E'))
+
+	{
+
+		//embedded launch
+
+	}
+
+	else
+
+	{
+		OpenDocumentFile(m_lpCmdLine);
+	}
+
+	// The main window has been initialized, so show and update it.
+	lastused.ReleaseBuffer();
+
+#ifndef STANDALONE
+	// finally initialise the workspaceserver
+	//mp_workserver = new CWorkspace;
+#endif
+
 	return TRUE;
 }
 
@@ -188,6 +282,13 @@ void CRotaApp::OnAppAbout()
 }
 
 // CRotaApp message handlers
+CWorkspace* CRotaApp::GetWorkspaceServer()
+{
 
+	assert(mp_workserver != NULL);
+
+	return mp_workserver;
+
+}
 
 
