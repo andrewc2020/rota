@@ -2,7 +2,8 @@
 //
 
 #include "stdafx.h"
-#include "centool8.h"
+//#include "centool8.h"
+#include "CONSTANT.H"
 #include "absolute.h"
 #include "state.h"
 #include "calstate.h"
@@ -76,9 +77,9 @@ CString CYearstate::set_column_heading(CAbsolutePeriod& start, CString& daystrin
 
 
 	
-	daystring=start.Get_start_string("%d")
-	+ "\n"
-	+ start.Get_start_string("%b");
+	daystring=start.Get_start_string(_T("%d"))
+	+ _T("\n")
+	+ start.Get_start_string(_T("%b"));
 	
 
 
